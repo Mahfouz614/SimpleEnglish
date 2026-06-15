@@ -3,230 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnEnglish - Simple Step-by-Step Learning</title>
+    <title>LearnEnglish - Smart Learning Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-amber-50 font-sans text-stone-800 antialiased">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased">
 
-    <!-- Header Banner -->
-    <header class="bg-white border-b border-amber-100 py-6 text-center shadow-sm">
-        <div class="max-w-md mx-auto px-4">
-            <div class="inline-flex items-center space-x-2 text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase mb-2">
-                <i class="fa-solid fa-feather-pointed"></i>
-                <span>English Made Easy</span>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('dashboard')">
+                <i class="fa-solid fa-graduation-cap text-indigo-600 text-3xl"></i>
+                <span class="text-2xl font-black tracking-tight text-slate-900">LearnEnglish <span class="text-xl">🇬🇧</span></span>
             </div>
-            <!-- Custom Brand Update -->
-            <h1 class="text-3xl font-black text-stone-900 tracking-tight flex items-center justify-center space-x-2">
-                <span>LearnEnglish</span> 
-                <span class="text-2xl">🇬🇧</span>
-            </h1>
-            <p class="text-stone-500 text-sm mt-1">No complicated grammar. Just 3 simple steps to confidence.</p>
+            <div class="flex flex-wrap justify-center gap-2 font-semibold text-sm">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-2 rounded-lg text-indigo-600 bg-indigo-50 transition">Dashboard</button>
+                <button onclick="switchTab('lessons')" id="nav-lessons" class="px-3 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition">Lessons</button>
+                <button onclick="switchTab('quiz')" id="nav-quiz" class="px-3 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition">Practice Quiz</button>
+                <button onclick="switchTab('ai')" id="nav-ai" class="px-3 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition flex items-center gap-1">✨ Ask AI</button>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Learning Path Layout -->
-    <main class="max-w-xl mx-auto px-4 py-8 space-y-12">
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-4 py-8">
 
-        <!-- STEP 1: LISTEN & REPEAT -->
-        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
-            <div class="flex items-center space-x-3">
-                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">1</span>
-                <h2 class="text-xl font-bold text-stone-900">Listen & Speak</h2>
+        <!-- ================= 1. DASHBOARD TAB ================= -->
+        <section id="tab-dashboard" class="space-y-6">
+            <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-6 sm:p-8 text-white shadow-md">
+                <h1 class="text-2xl sm:text-3xl font-black mb-2">Welcome to Your English Journey! 🚀</h1>
+                <p class="text-indigo-100 text-sm max-w-md">No complicated books. Just simple tools, clear examples, and smart AI help to make you confident.</p>
             </div>
-            <p class="text-stone-500 text-xs">Tap the speaker icon to hear how standard native speakers pronounce these daily phrases. Repeat them out loud 3 times!</p>
-            
-            <div class="space-y-2 pt-2">
-                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
-                    <div>
-                        <p class="font-bold text-stone-800 text-base">"How's it going?"</p>
-                        <p class="text-xs text-stone-400 font-medium">Casual way to say: How are you?</p>
-                    </div>
-                    <button onclick="speakText('How is it going?')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
-                </div>
 
-                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
-                    <div>
-                        <p class="font-bold text-stone-800 text-base">"Could you help me?"</p>
-                        <p class="text-xs text-stone-400 font-medium">Polite way to ask for assistance anywhere.</p>
-                    </div>
-                    <button onclick="speakText('Could you help me?')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
+            <!-- Feature Quick Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div onclick="switchTab('lessons')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-300 cursor-pointer transition">
+                    <div class="text-indigo-600 text-xl mb-2"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 class="font-bold text-slate-900">1. Learn Words</h3>
+                    <p class="text-xs text-slate-500 mt-1">Simple vocabulary and daily grammar rules.</p>
                 </div>
-
-                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
-                    <div>
-                        <p class="font-bold text-stone-800 text-base">"Never mind, it's fine."</p>
-                        <p class="text-xs text-stone-400 font-medium">Say this when a small problem doesn't matter.</p>
-                    </div>
-                    <button onclick="speakText('Never mind, it is fine.')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
+                <div onclick="switchTab('quiz')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-300 cursor-pointer transition">
+                    <div class="text-emerald-600 text-xl mb-2"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3 class="font-bold text-slate-900">2. Take a Quiz</h3>
+                    <p class="text-xs text-slate-500 mt-1">Test yourself with 6 real-life questions.</p>
+                </div>
+                <div onclick="switchTab('ai')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-300 cursor-pointer transition">
+                    <div class="text-purple-600 text-xl mb-2"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="font-bold text-slate-900">3. Ask the AI</h3>
+                    <p class="text-xs text-slate-500 mt-1">Type any question and get an instant answer.</p>
                 </div>
             </div>
         </section>
 
-        <!-- STEP 2: IMAGE MEMORY CARDS -->
-        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
-            <div class="flex items-center space-x-3">
-                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">2</span>
-                <h2 class="text-xl font-bold text-stone-900">Word-Association Flashcards</h2>
-            </div>
-            <p class="text-stone-500 text-xs">Link basic target objects directly with clean imagery to boost memory retention instantly.</p>
-            
-            <div class="flex flex-col items-center py-4">
-                <div id="simple-card" class="w-full max-w-xs aspect-square bg-gradient-to-br from-amber-400 to-orange-400 rounded-2xl shadow-md p-6 flex flex-col justify-between text-white text-center cursor-pointer transform active:scale-98 transition duration-300">
-                    <div class="text-right font-bold text-xs opacity-75 tracking-wider uppercase" id="card-step-title">Tap Card to Translate</div>
-                    <div class="text-7xl my-auto" id="card-emoji">🍎</div>
-                    <div>
-                        <h3 class="text-3xl font-black tracking-tight" id="card-main-text">Apple</h3>
-                        <p class="text-xs font-semibold opacity-80 mt-1" id="card-sub-text">Pronunciation: /æp.əl/</p>
+
+        <!-- ================= 2. LESSONS TAB (VOCAB & GRAMMAR) ================= -->
+        <section id="tab-lessons" class="hidden space-y-8">
+            <!-- Part A: Easy Vocabulary -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">🍎 Essential Everyday Vocabulary</h2>
+                <p class="text-slate-500 text-xs">Tap the sound button to hear how to say these words correctly.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Noun</span>
+                            <h4 class="font-bold text-slate-800 text-lg mt-1">Colleague</h4>
+                            <p class="text-xs text-slate-500">A person you work with. (Co-worker)</p>
+                        </div>
+                        <button onclick="speakText('Colleague')" class="h-9 w-9 bg-slate-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition flex items-center justify-center"><i class="fa-solid fa-volume-high text-sm"></i></button>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Adjective</span>
+                            <h4 class="font-bold text-slate-800 text-lg mt-1">Delicious</h4>
+                            <p class="text-xs text-slate-500">Food that tastes very, very good.</p>
+                        </div>
+                        <button onclick="speakText('Delicious')" class="h-9 w-9 bg-slate-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition flex items-center justify-center"><i class="fa-solid fa-volume-high text-sm"></i></button>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm">
+                        <div>
+                            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Verb</span>
+                            <h4 class="font-bold text-slate-800 text-lg mt-1">To Improve</h4>
+                            <p class="text-xs text-slate-500">To make something better than before.</p>
+                        </div>
+                        <button onclick="speakText('To Improve')" class="h-9 w-9 bg-slate-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition flex items-center justify-center"><i class="fa-solid fa-volume-high text-sm"></i></button>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm">
+                        <div>
+                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Idiom</span>
+                            <h4 class="font-bold text-slate-800 text-lg mt-1">Under the weather</h4>
+                            <p class="text-xs text-slate-500">Feeling a little bit sick or tired.</p>
+                        </div>
+                        <button onclick="speakText('Under the weather')" class="h-9 w-9 bg-slate-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition flex items-center justify-center"><i class="fa-solid fa-volume-high text-sm"></i></button>
                     </div>
                 </div>
-                <div class="flex space-x-3 mt-6">
-                    <button onclick="changeSimpleCard(-1)" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 font-bold rounded-xl text-stone-700 text-sm transition"><i class="fa-solid fa-chevron-left"></i> Previous</button>
-                    <button onclick="flipSimpleCard()" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 font-bold rounded-xl text-white text-sm transition shadow-sm"><i class="fa-solid fa-rotate"></i> Flip Translate</button>
-                    <button onclick="changeSimpleCard(1)" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 font-bold rounded-xl text-stone-700 text-sm transition">Next <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Part B: Simple Grammar Rules -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">📝 Easy Grammar Steps</h2>
+                <div class="space-y-3">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2 text-base">
+                            <span class="h-5 w-5 rounded bg-indigo-600 text-white flex items-center justify-center text-xs">1</span>
+                            Don't mix up: Your vs. You're
+                        </h3>
+                        <p class="text-xs text-slate-600"><strong class="text-indigo-600">Your</strong> belongs to you ➡️ <em>"Is this <span class="underline">your</span> book?"</em></p>
+                        <p class="text-xs text-slate-600"><strong class="text-indigo-600">You're</strong> is short for 'You are' ➡️ <em>"Hey, <span class="underline">you're</span> doing a great job!"</em></p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2 text-base">
+                            <span class="h-5 w-5 rounded bg-indigo-600 text-white flex items-center justify-center text-xs">2</span>
+                            Speaking about the Past (-ed)
+                        </h3>
+                        <p class="text-xs text-slate-600">To talk about yesterday, usually just add <strong class="text-indigo-600">-ed</strong> to the action word:</p>
+                        <ul class="list-disc pl-5 text-xs text-slate-500 space-y-1">
+                            <li>Today I <strong>walk</strong> ➡️ Yesterday I <strong>walked</strong></li>
+                            <li>Today I <strong>cook</strong> ➡️ Yesterday I <strong>cooked</strong></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- STEP 3: PLAY THE MEANING GAME -->
-        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
-            <div class="flex items-center space-x-3">
-                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">3</span>
-                <h2 class="text-xl font-bold text-stone-900">The Quick Matching Challenge</h2>
+
+        <!-- ================= 3. QUIZ TAB ================= -->
+        <section id="tab-quiz" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-xl mx-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-black text-lg text-slate-900">Check Your Skills</h3>
+                    <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded-lg" id="quiz-progress">Question 1 of 6</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mb-6 overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-indigo-600 h-full w-1/6 transition-all duration-300"></div>
+                </div>
+
+                <div id="quiz-box">
+                    <p class="text-slate-800 font-bold text-base sm:text-lg mb-4" id="quiz-question">Loading Question...</p>
+                    <div class="grid grid-cols-1 gap-2.5" id="quiz-options">
+                        <!-- Options generated automatically via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end hidden" id="quiz-actions">
+                    <button onclick="nextQuestion()" class="px-5 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition text-sm">
+                        Next Question <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
             </div>
-            <p class="text-stone-500 text-xs text-left">Can you find the perfect response? Read the prompt below and click the option that best answers it.</p>
-            
-            <div id="game-container" class="p-5 bg-stone-50 rounded-xl border border-stone-200 space-y-4">
-                <p id="game-scenario" class="font-bold text-stone-800 text-center text-lg">"Someone gives you an unexpected gift. What do you say?"</p>
-                <div class="grid grid-cols-1 gap-2.5" id="game-options-box">
-                    <!-- Javascript populates standard interactive buttons here -->
+        </section>
+
+
+        <!-- ================= 4. AI QUESTIONS TAB ================= -->
+        <section id="tab-ai" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div>
+                        <h2 class="text-xl font-black text-slate-900">Smart English Helper</h2>
+                        <p class="text-xs text-slate-500">Ask anything! Grammar rules, spelling check, or common translations.</p>
+                    </div>
+                </div>
+
+                <!-- Chat Box Window -->
+                <div class="bg-slate-50 rounded-xl p-4 h-64 overflow-y-auto border border-slate-100 space-y-3 text-sm" id="chat-window">
+                    <div class="flex items-start space-x-2.5">
+                        <div class="bg-purple-600 text-white font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0">AI</div>
+                        <div class="bg-white border border-slate-200 rounded-xl rounded-tl-none p-3 max-w-[85%] text-slate-700 shadow-sm">
+                            Hello! I am your personal English assistant. Ask me anything like: 
+                            <br><span class="text-xs text-purple-600 font-bold italic block mt-1">"When do I use Say vs Tell?" or "Check spelling for beautiful"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Frame Form -->
+                <div class="flex gap-2">
+                    <input type="text" id="ai-input" placeholder="Type your English question here..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                    <button onclick="askSmartAI()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 rounded-xl transition text-sm flex items-center gap-1 shadow-sm"><i class="fa-solid fa-paper-plane"></i> Send</button>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Custom Brand Update Footer -->
-    <footer class="text-center pb-12 pt-4 text-xs text-stone-400 font-medium">
-        &copy; 2026 LearnEnglish. Made to make learning stress-free.
+    <!-- Global Layout Brand Footer -->
+    <footer class="text-center py-12 text-xs text-slate-400 font-bold border-t border-slate-200 mt-12 bg-white">
+        &copy; 2026 LearnEnglish. Simple, interactive, smart.
     </footer>
 
-    <!-- Simplified System Engine -->
+
+    <!-- ================= JAVASCRIPT APP LOGIC ================= -->
     <script>
-        // Audio pronunciation utility using standard speech synthesis
-        function speakText(phrase) {
+        // Audio speaking player
+        function speakText(text) {
             if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(phrase);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.85; // slightly slower pacing for learners
-                window.speechSynthesis.speak(utterance);
-            } else {
-                alert("Audio playback not fully supported on this browser.");
+                const speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'en-US';
+                speech.rate = 0.9;
+                window.speechSynthesis.speak(speech);
             }
         }
 
-        // Simple Vocabulary Database
-        const vocabularyList = [
-            { en: "Apple", context: "/æp.əl/", emoji: "🍎", translation: "La Pomme / Manzana" },
-            { en: "Water", context: "/wɔː.tər/", emoji: "💧", translation: "L'eau / Agua" },
-            { en: "Thank you", context: "/θæŋk juː/", emoji: "🙏", translation: "Merci / Gracias" },
-            { en: "House", context: "/haʊs/", emoji: "🏠", translation: "La Maison / Casa" },
-            { en: "Book", context: "/bʊk/", emoji: "📚", translation: "Le Livre / Libro" }
+        // Expanded 6-Question Database
+        const extendedQuiz = [
+            { question: "Fill in the blank: 'I forgot to bring ________ phone today.'", options: ["you're", "your", "yours", "you"], correct: 1 },
+            { question: "Which phrase means you are feeling a little bit sick?", options: ["Over the moon", "Under the weather", "Break a leg", "Piece of cake"], correct: 1 },
+            { question: "How do you talk about a past activity correctly?", options: ["Yesterday I walk to school.", "Yesterday I walked to school.", "Yesterday I walking to school.", "Yesterday I am walk."], correct: 1 },
+            { question: "What is a 'colleague'?", options: ["A family member", "A person you work with", "A type of fruit", "A high school teacher"], correct: 1 },
+            { question: "If a meal tastes fantastic, you say it is ________.", options: ["Dangerous", "Difficult", "Delicious", "Angry"], correct: 2 },
+            { question: "Complete the sentence: 'They are trying to ________ their English accents.'", options: ["improve", "improved", "improving", "improves"], correct: 0 }
         ];
 
-        let currentCardPointer = 0;
-        let showingTranslation = false;
+        let quizIdx = 0;
+        let answeredState = false;
 
-        function updateCardUI() {
-            const currentItem = vocabularyList[currentCardPointer];
-            if (!showingTranslation) {
-                document.getElementById('card-main-text').innerText = currentItem.en;
-                document.getElementById('card-sub-text').innerText = `Pronunciation: ${currentItem.context}`;
-                document.getElementById('card-step-title').innerText = "Tap Card to Translate";
-            } else {
-                document.getElementById('card-main-text').innerText = currentItem.translation;
-                document.getElementById('card-sub-text').innerText = "Translation Meaning";
-                document.getElementById('card-step-title').innerText = "Showing Translation";
-            }
-            document.getElementById('card-emoji').innerText = currentItem.emoji;
+        // Tab Navigation Routine
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'lessons', 'quiz', 'ai'];
+            tabs.forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`nav-${t}`).classList.remove('text-indigo-600', 'bg-indigo-50', 'text-purple-600', 'bg-purple-50');
+                document.getElementById(`nav-${t}`).classList.add('text-slate-600');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const themeColor = tabId === 'ai' ? 'purple' : 'indigo';
+            document.getElementById(`nav-${tabId}`).classList.add(`text-${themeColor}-600`, `bg-${themeColor}-50`);
+            document.getElementById(`nav-${tabId}`).classList.remove('text-slate-600');
+
+            if(tabId === 'quiz') resetQuiz();
         }
 
-        function flipSimpleCard() {
-            showingTranslation = !showingTranslation;
-            updateCardUI();
+        function resetQuiz() {
+            quizIdx = 0;
+            renderQuestion();
         }
 
-        // Add event click logic right to the visual card container element frame
-        document.getElementById('simple-card').addEventListener('click', flipSimpleCard);
+        function renderQuestion() {
+            answeredState = false;
+            document.getElementById('quiz-actions').classList.add('hidden');
+            
+            document.getElementById('quiz-progress').innerText = `Question ${quizIdx + 1} of ${extendedQuiz.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((quizIdx + 1) / extendedQuiz.length) * 100}%`;
+            
+            const q = extendedQuiz[quizIdx];
+            document.getElementById('quiz-question').innerText = q.question;
+            
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
 
-        function changeSimpleCard(direction) {
-            showingTranslation = false;
-            currentCardPointer = (currentCardPointer + direction + vocabularyList.length) % vocabularyList.length;
-            updateCardUI();
-        }
-
-        // --- GAME SYSTEM CONFIGURATION ---
-        const gameScenarios = [
-            {
-                prompt: "Someone gives you an unexpected gift. What do you say?",
-                choices: ["Good morning!", "Thank you so much!", "Goodbye.", "Where is the bathroom?"],
-                answerIdx: 1
-            },
-            {
-                prompt: "You want to ask a store clerk for help finding something. What do you say?",
-                choices: ["Excuse me, could you help me?", "Never mind.", "Nice to meet you.", "See you later!"],
-                answerIdx: 0
-            },
-            {
-                prompt: "You bumped into someone by accident walking down a busy hallway. What do you say?",
-                choices: ["I am starving.", "Congratulations!", "Oh, I'm sorry!", "What is your name?"],
-                answerIdx: 2
-            }
-        ];
-
-        let internalGameRoundIdx = 0;
-
-        function loadGameRound() {
-            const session = gameScenarios[internalGameRoundIdx];
-            document.getElementById('game-scenario').innerText = `"${session.prompt}"`;
-            const box = document.getElementById('game-options-box');
-            box.innerHTML = ''; // Wipe past dynamic elements cleanly
-
-            session.choices.forEach((choice, choiceIdx) => {
-                const choiceBtn = document.createElement('button');
-                choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-stone-200 bg-white hover:bg-stone-100 active:scale-99 transition text-sm flex justify-between items-center outline-none";
-                choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-regular fa-circle text-stone-300"></i>`;
-                
-                choiceBtn.onclick = () => {
-                    const buttons = box.getElementsByTagName('button');
-                    for(let b of buttons) b.disabled = true; // Freeze inputs instantly
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition text-sm font-semibold flex justify-between items-center outline-none";
+                btn.innerHTML = `<span>${opt}</span><i class="fa-regular fa-circle text-slate-300"></i>`;
+                btn.onclick = () => {
+                    if(answeredState) return;
+                    answeredState = true;
                     
-                    if (choiceIdx === session.answerIdx) {
-                        choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-800 text-sm flex justify-between items-center shadow-sm";
-                        choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
-                        speakText("Perfect!");
-                    } else {
-                        choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-rose-500 bg-rose-50 text-rose-800 text-sm flex justify-between items-center shadow-sm";
-                        choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
-                        
-                        const rightButton = buttons[session.answerIdx];
-                        rightButton.className = "w-full text-left font-semibold p-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-800 text-sm flex justify-between items-center shadow-sm";
-                        rightButton.innerHTML = `<span>${session.choices[session.answerIdx]}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
-                    }
+                    const listButtons = optionsBox.getElementsByTagName('button');
+                    for(let b of listButtons) b.disabled = true;
 
-                    setTimeout(() => {
-                        internalGameRoundIdx = (internalGameRoundIdx + 1) % gameScenarios.length;
-                        loadGameRound();
-                    }, 2200);
+                    if(idx === q.correct) {
+                        btn.className = "w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 transition text-sm font-semibold flex justify-between items-center";
+                        btn.innerHTML = `<span>${opt}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                    } else {
+                        btn.className = "w-full text-left p-3.5 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 transition text-sm font-semibold flex justify-between items-center";
+                        btn.innerHTML = `<span>${opt}</span><i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
+                        
+                        listButtons[q.correct].className = "w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 transition text-sm font-semibold flex justify-between items-center";
+                        listButtons[q.correct].innerHTML = `<span>${q.options[q.correct]}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                    }
+                    document.getElementById('quiz-actions').classList.remove('hidden');
                 };
-                box.appendChild(choiceBtn);
+                optionsBox.appendChild(btn);
             });
         }
 
-        window.onload = () => {
-            updateCardUI();
-            loadGameRound();
-        };
+        function nextQuestion() {
+            if(quizIdx + 1 < extendedQuiz.length) {
+                quizIdx++;
+                renderQuestion();
+            } else {
+                document.getElementById('quiz-box').innerHTML = `
+                    <div class="text-center py-6 space-y-3">
+                        <div class="text-4xl">🎉</div>
+                        <h4 class="text-lg font-black text-slate-900">Great Practice Session!</h4>
+                        <p class="text-slate-500 text-xs px-4">You finished all 6 English baseline questions successfully.</p>
+                        <button onclick="resetQuiz()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">Try Again</button>
+                    </div>
+                `;
+                document.getElementById('quiz-actions').classList.add('hidden');
+            }
+        }
+
+
+        // ================= INTUITIVE AI RULE ENGINE =================
+        function askSmartAI() {
+            const inputField = document.getElementById('ai-input');
+            const question = inputField.value.trim().toLowerCase();
+            if(!question) return;
+
+            const chatWindow = document.getElementById('chat-window');
+
+            // 1. Append User Text Balloon
+            chatWindow.innerHTML += `
+                <div class="flex items-start space-x-2.5 justify-end">
+                    <div class="bg-purple-100 border border-purple-200 text-purple-950 rounded-xl rounded-tr-none p-3 max-w-[85%] font-medium">
+                        ${inputField.value}
+                    </div>
+                    <div class="bg-purple-200 text-purple-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0">ME</div>
+                </div>
+            `;
+            
+            inputField.value = ''; // Clean box input
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Autoscroll 
+
+            // 2. Generate Intelligent AI Responses instantly 
+            let aiReply = "That is a great English question! To keep it simple: remember to check your spelling, make sure your sentence has an action word (verb), or ask me for clear definitions.";
+
+            if (question.includes("your") || question.includes("you're")) {
+                aiReply = "<strong>Your</strong> means it belongs to you (e.g., <em>Your jacket</em>). <br><br><strong>You're</strong> is short for 'You are' (e.g., <em>You're my best friend</em>).";
+            } else if (question.includes("say") || question.includes("tell")) {
+                aiReply = "Use <strong>Say</strong> when expressing a general thought (e.g., <em>She said hello</em>). <br><br>Use <strong>Tell</strong> when you are giving information directly to a specific person (e.g., <em>Tell me a secret</em>).";
+            } else if (question.includes("weather")) {
+                aiReply = "The idiom <strong>'Under the weather'</strong> simply means you feel slightly sick, tired, or unwell today.";
+            } else if (question.includes("beautiful") || question.includes("spell")) {
+                aiReply = "The correct spelling is <strong>B-E-A-U-T-I-F-U-L</strong>. <br>💡 Easy trick to remember: <em>Big Elephants Always Understand They I Like Finding U Lovely</em>!";
+            } else if (question.includes("past") || question.includes("yesterday") || question.includes("verb")) {
+                aiReply = "For most basic actions, just add <strong>-ed</strong> at the end when talking about the past! <br>Examples: <br>• Talk ➡️ Talked<br>• Cook ➡️ Cooked";
+            } else if (question.includes("hello") || question.includes("polite") || question.includes("greet")) {
+                aiReply = "To sound polite and natural, you can say: <br>• <em>'Good morning, how are you today?'</em> <br>• <em>'Hi there! Hope you are having a nice day.'</em>";
+            } else if (question.includes("thank") || question.includes("welcome")) {
+                aiReply = "When someone says 'Thank you', the easiest, friendliest responses are: <br>• <em>'You're very welcome!'</em> <br>• <em>'No problem at all!'</em>";
+            }
+
+            // 3. Render AI typing feedback balloon after a slight natural break
+            setTimeout(() => {
+                chatWindow.innerHTML += `
+                    <div class="flex items-start space-x-2.5">
+                        <div class="bg-purple-600 text-white font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0">AI</div>
+                        <div class="bg-white border border-slate-200 rounded-xl rounded-tl-none p-3 max-w-[85%] text-slate-700 shadow-sm line-height-relaxed">
+                            ${aiReply}
+                        </div>
+                    </div>
+                `;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 450);
+        }
+
+        // Allow pressing Enter key to send AI messages
+        document.getElementById('ai-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') askSmartAI();
+        });
+
+        window.onload = () => switchTab('dashboard');
     </script>
 </body>
 </html>
+         
