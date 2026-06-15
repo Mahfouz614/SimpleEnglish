@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnEnglish - Simple Step-by-Step Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-amber-50 font-sans text-stone-800 antialiased">
+
+    <!-- Header Banner -->
+    <header class="bg-white border-b border-amber-100 py-6 text-center shadow-sm">
+        <div class="max-w-md mx-auto px-4">
+            <div class="inline-flex items-center space-x-2 text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase mb-2">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <span>English Made Easy</span>
+            </div>
+            <!-- Custom Brand Update -->
+            <h1 class="text-3xl font-black text-stone-900 tracking-tight flex items-center justify-center space-x-2">
+                <span>LearnEnglish</span> 
+                <span class="text-2xl">🇬🇧</span>
+            </h1>
+            <p class="text-stone-500 text-sm mt-1">No complicated grammar. Just 3 simple steps to confidence.</p>
+        </div>
+    </header>
+
+    <!-- Main Learning Path Layout -->
+    <main class="max-w-xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- STEP 1: LISTEN & REPEAT -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
+            <div class="flex items-center space-x-3">
+                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">1</span>
+                <h2 class="text-xl font-bold text-stone-900">Listen & Speak</h2>
+            </div>
+            <p class="text-stone-500 text-xs">Tap the speaker icon to hear how standard native speakers pronounce these daily phrases. Repeat them out loud 3 times!</p>
+            
+            <div class="space-y-2 pt-2">
+                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
+                    <div>
+                        <p class="font-bold text-stone-800 text-base">"How's it going?"</p>
+                        <p class="text-xs text-stone-400 font-medium">Casual way to say: How are you?</p>
+                    </div>
+                    <button onclick="speakText('How is it going?')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
+                    <div>
+                        <p class="font-bold text-stone-800 text-base">"Could you help me?"</p>
+                        <p class="text-xs text-stone-400 font-medium">Polite way to ask for assistance anywhere.</p>
+                    </div>
+                    <button onclick="speakText('Could you help me?')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <div class="flex items-center justify-between p-3.5 bg-stone-50 hover:bg-amber-50/50 rounded-xl transition group">
+                    <div>
+                        <p class="font-bold text-stone-800 text-base">"Never mind, it's fine."</p>
+                        <p class="text-xs text-stone-400 font-medium">Say this when a small problem doesn't matter.</p>
+                    </div>
+                    <button onclick="speakText('Never mind, it is fine.')" class="h-10 w-10 rounded-full bg-white shadow-sm border border-stone-200 text-amber-600 hover:scale-105 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: IMAGE MEMORY CARDS -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
+            <div class="flex items-center space-x-3">
+                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">2</span>
+                <h2 class="text-xl font-bold text-stone-900">Word-Association Flashcards</h2>
+            </div>
+            <p class="text-stone-500 text-xs">Link basic target objects directly with clean imagery to boost memory retention instantly.</p>
+            
+            <div class="flex flex-col items-center py-4">
+                <div id="simple-card" class="w-full max-w-xs aspect-square bg-gradient-to-br from-amber-400 to-orange-400 rounded-2xl shadow-md p-6 flex flex-col justify-between text-white text-center cursor-pointer transform active:scale-98 transition duration-300">
+                    <div class="text-right font-bold text-xs opacity-75 tracking-wider uppercase" id="card-step-title">Tap Card to Translate</div>
+                    <div class="text-7xl my-auto" id="card-emoji">🍎</div>
+                    <div>
+                        <h3 class="text-3xl font-black tracking-tight" id="card-main-text">Apple</h3>
+                        <p class="text-xs font-semibold opacity-80 mt-1" id="card-sub-text">Pronunciation: /æp.əl/</p>
+                    </div>
+                </div>
+                <div class="flex space-x-3 mt-6">
+                    <button onclick="changeSimpleCard(-1)" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 font-bold rounded-xl text-stone-700 text-sm transition"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+                    <button onclick="flipSimpleCard()" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 font-bold rounded-xl text-white text-sm transition shadow-sm"><i class="fa-solid fa-rotate"></i> Flip Translate</button>
+                    <button onclick="changeSimpleCard(1)" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 font-bold rounded-xl text-stone-700 text-sm transition">Next <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: PLAY THE MEANING GAME -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 space-y-4">
+            <div class="flex items-center space-x-3">
+                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 font-black text-white text-sm">3</span>
+                <h2 class="text-xl font-bold text-stone-900">The Quick Matching Challenge</h2>
+            </div>
+            <p class="text-stone-500 text-xs text-left">Can you find the perfect response? Read the prompt below and click the option that best answers it.</p>
+            
+            <div id="game-container" class="p-5 bg-stone-50 rounded-xl border border-stone-200 space-y-4">
+                <p id="game-scenario" class="font-bold text-stone-800 text-center text-lg">"Someone gives you an unexpected gift. What do you say?"</p>
+                <div class="grid grid-cols-1 gap-2.5" id="game-options-box">
+                    <!-- Javascript populates standard interactive buttons here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Brand Update Footer -->
+    <footer class="text-center pb-12 pt-4 text-xs text-stone-400 font-medium">
+        &copy; 2026 LearnEnglish. Made to make learning stress-free.
+    </footer>
+
+    <!-- Simplified System Engine -->
+    <script>
+        // Audio pronunciation utility using standard speech synthesis
+        function speakText(phrase) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(phrase);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // slightly slower pacing for learners
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Audio playback not fully supported on this browser.");
+            }
+        }
+
+        // Simple Vocabulary Database
+        const vocabularyList = [
+            { en: "Apple", context: "/æp.əl/", emoji: "🍎", translation: "La Pomme / Manzana" },
+            { en: "Water", context: "/wɔː.tər/", emoji: "💧", translation: "L'eau / Agua" },
+            { en: "Thank you", context: "/θæŋk juː/", emoji: "🙏", translation: "Merci / Gracias" },
+            { en: "House", context: "/haʊs/", emoji: "🏠", translation: "La Maison / Casa" },
+            { en: "Book", context: "/bʊk/", emoji: "📚", translation: "Le Livre / Libro" }
+        ];
+
+        let currentCardPointer = 0;
+        let showingTranslation = false;
+
+        function updateCardUI() {
+            const currentItem = vocabularyList[currentCardPointer];
+            if (!showingTranslation) {
+                document.getElementById('card-main-text').innerText = currentItem.en;
+                document.getElementById('card-sub-text').innerText = `Pronunciation: ${currentItem.context}`;
+                document.getElementById('card-step-title').innerText = "Tap Card to Translate";
+            } else {
+                document.getElementById('card-main-text').innerText = currentItem.translation;
+                document.getElementById('card-sub-text').innerText = "Translation Meaning";
+                document.getElementById('card-step-title').innerText = "Showing Translation";
+            }
+            document.getElementById('card-emoji').innerText = currentItem.emoji;
+        }
+
+        function flipSimpleCard() {
+            showingTranslation = !showingTranslation;
+            updateCardUI();
+        }
+
+        // Add event click logic right to the visual card container element frame
+        document.getElementById('simple-card').addEventListener('click', flipSimpleCard);
+
+        function changeSimpleCard(direction) {
+            showingTranslation = false;
+            currentCardPointer = (currentCardPointer + direction + vocabularyList.length) % vocabularyList.length;
+            updateCardUI();
+        }
+
+        // --- GAME SYSTEM CONFIGURATION ---
+        const gameScenarios = [
+            {
+                prompt: "Someone gives you an unexpected gift. What do you say?",
+                choices: ["Good morning!", "Thank you so much!", "Goodbye.", "Where is the bathroom?"],
+                answerIdx: 1
+            },
+            {
+                prompt: "You want to ask a store clerk for help finding something. What do you say?",
+                choices: ["Excuse me, could you help me?", "Never mind.", "Nice to meet you.", "See you later!"],
+                answerIdx: 0
+            },
+            {
+                prompt: "You bumped into someone by accident walking down a busy hallway. What do you say?",
+                choices: ["I am starving.", "Congratulations!", "Oh, I'm sorry!", "What is your name?"],
+                answerIdx: 2
+            }
+        ];
+
+        let internalGameRoundIdx = 0;
+
+        function loadGameRound() {
+            const session = gameScenarios[internalGameRoundIdx];
+            document.getElementById('game-scenario').innerText = `"${session.prompt}"`;
+            const box = document.getElementById('game-options-box');
+            box.innerHTML = ''; // Wipe past dynamic elements cleanly
+
+            session.choices.forEach((choice, choiceIdx) => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-stone-200 bg-white hover:bg-stone-100 active:scale-99 transition text-sm flex justify-between items-center outline-none";
+                choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-regular fa-circle text-stone-300"></i>`;
+                
+                choiceBtn.onclick = () => {
+                    const buttons = box.getElementsByTagName('button');
+                    for(let b of buttons) b.disabled = true; // Freeze inputs instantly
+                    
+                    if (choiceIdx === session.answerIdx) {
+                        choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-800 text-sm flex justify-between items-center shadow-sm";
+                        choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                        speakText("Perfect!");
+                    } else {
+                        choiceBtn.className = "w-full text-left font-semibold p-3 rounded-xl border border-rose-500 bg-rose-50 text-rose-800 text-sm flex justify-between items-center shadow-sm";
+                        choiceBtn.innerHTML = `<span>${choice}</span><i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
+                        
+                        const rightButton = buttons[session.answerIdx];
+                        rightButton.className = "w-full text-left font-semibold p-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-800 text-sm flex justify-between items-center shadow-sm";
+                        rightButton.innerHTML = `<span>${session.choices[session.answerIdx]}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                    }
+
+                    setTimeout(() => {
+                        internalGameRoundIdx = (internalGameRoundIdx + 1) % gameScenarios.length;
+                        loadGameRound();
+                    }, 2200);
+                };
+                box.appendChild(choiceBtn);
+            });
+        }
+
+        window.onload = () => {
+            updateCardUI();
+            loadGameRound();
+        };
+    </script>
+</body>
+</html>
