@@ -1,27 +1,31 @@
-// 1. App State Navigation Signals
+// 1. Core Reactive System Variable Placeholders
 let _currentTab, _setCurrentTab;
 let _quizIndex, _setQuizIndex;
-let _quizAnswered, _setQuizAnswered;
 let _selectedQuizOpt, _setSelectedQuizOpt;
 let _userProgress, _setUserProgress;
+let _quizList, _setQuizList;
 
 export function currentTab() { return _currentTab(); }
 export function setCurrentTab(val) { _setCurrentTab(val); }
 export function quizIndex() { return _quizIndex(); }
-export function quizAnswered() { return _quizAnswered(); }
 export function selectedQuizOpt() { return _selectedQuizOpt(); }
 export function userProgress() { return _userProgress(); }
+export function quizAnswered() { return _quizList(); }
 
-// Initializes our reactive state signals safely after SolidJS loads
+export function getQuizzes(dataArray) {
+  _setQuizList(dataArray);
+}
+
+// 2. Safe Boot Function (Initializes variables after SolidJS downloads completely)
 export function initAppSignals() {
   const { createSignal, createEffect } = Solid;
 
   [_currentTab, _setCurrentTab] = createSignal('dashboard');
   [_quizIndex, _setQuizIndex] = createSignal(0);
-  [_quizAnswered, _setQuizAnswered] = createSignal(false);
   [_selectedQuizOpt, _setSelectedQuizOpt] = createSignal(null);
+  [_quizList, _setQuizList] = createSignal([]);
 
-  const initialProgress = { completedQuizzes: [], completedExercises: [], score: 0 };
+  const initialProgress = { completedQuizzes: [], score: 0 };
   const [prog, setProg] = createSignal(JSON.parse(localStorage.getItem('learn_english_progress')) || initialProgress);
   _userProgress = prog; _setUserProgress = setProg;
 
@@ -30,7 +34,7 @@ export function initAppSignals() {
   });
 }
 
-// 2. Audio Text-to-Speech Controller
+// 3. Audio Text-to-Speech Controller
 export function speakText(phrase) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
@@ -40,11 +44,9 @@ export function speakText(phrase) {
   }
 }
 
-// 3. Game Logic Handler
+// 4. Interactive Quiz Scoring Rule Engine
 export function handleQuizSelection(optionIndex, correctIndex) {
-  if (_quizAnswered()) return;
   _setSelectedQuizOpt(optionIndex);
-  _setQuizAnswered(true);
 
   if (optionIndex === correctIndex) {
     speakText("Correct!");
@@ -56,6 +58,17 @@ export function handleQuizSelection(optionIndex, correctIndex) {
         completedQuizzes: [...current.completedQuizzes, _quizIndex()]
       });
     }
+    
+    // Auto-advance to next question if available after a brief pause
+    setTimeout(() => {
+      if (_quizIndex() < _quizList().length - 1) {
+        _setQuizIndex(_quizIndex() + 1);
+        _setSelectedQuizOpt(null);
+      } else {
+        speakText("Congratulations! You completed all exercises.");
+      }
+    }, 1200);
+
   } else {
     speakText("Try again!");
   }
