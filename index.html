@@ -1,4 +1,92 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnEnglish - Premium Learning Platform</title>
+    <!-- SolidJS Global Browser CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/solid-js/1.8.11/solid.browser.view.min.js"></script>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- Mounting target element for SolidJS -->
+    <div id="root"></div>
+
+    <script type="module">
+        // Import our logical controllers from app.js
+        import { 
+            currentTab, setCurrentTab, quizIndex, exIndex,
+            quizAnswered, selectedQuizOpt, userProgress, 
+            handleQuizSelection, speakText 
+        } from './app.js';
+
+        let appData = { quizzes: [], exercises: [] };
+
+        // Processus: Fetch our JSON data structure, then mount the frontend UI
+        fetch('./data.json')
+            .then(res => res.json())
+            .then(data => { 
+                appData = data; 
+                Solid.render(App, document.getElementById('root')); 
+            });
+
+        // The View Interface Template Component
+        function App() {
+            return Solid.html`
+                <div class="min-h-screen flex flex-col">
+                    <!-- Navigation Layout -->
+                    <nav class="bg-white shadow-sm border-b p-4 flex justify-between items-center">
+                        <div class="flex items-center space-x-2 cursor-pointer" onclick=${() => setCurrentTab('dashboard')}>
+                            <div class="p-2 bg-indigo-600 rounded-xl text-white"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="text-xl font-black">LearnEnglish</span>
+                        </div>
+                        <div class="flex gap-2 bg-slate-100 p-1 rounded-xl text-sm font-semibold">
+                            <button onclick=${() => setCurrentTab('dashboard')} class="px-4 py-2 rounded-lg">Dashboard</button>
+                            <button onclick=${() => setCurrentTab('quiz')} class="px-4 py-2 rounded-lg">Quizzes</button>
+                        </div>
+                    </nav>
+
+                    <!-- Main Dynamic Content Wrapper -->
+                    <main class="max-w-4xl w-full mx-auto p-6 flex-grow">
+                        
+                        <!-- Dashboard UI Panel -->
+                        <div class=${() => currentTab() === 'dashboard' ? 'space-y-6' : 'hidden'}>
+                            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-md">
+                                <h1 class="text-3xl font-black">Your Progress Dashboard</h1>
+                                <p class="text-indigo-100 mt-2">SolidJS architecture with complete separation of concerns.</p>
+                                <div class="mt-4 bg-white/20 inline-block px-4 py-2 rounded-xl font-bold">
+                                    🏆 Score Tracker: \${() => userProgress().score} Points
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz View Interface Panel -->
+                        <div class=${() => currentTab() === 'quiz' ? 'space-y-4' : 'hidden'}>
+                            <h2 class="text-xl font-black">Dynamic Quiz Panel</h2>
+                            <div class="bg-white p-6 rounded-2xl border shadow-sm">
+                                <p class="text-lg font-bold">\${() => appData.quizzes[quizIndex()]?.q}</p>
+                                
+                                <div class="grid grid-cols-1 gap-2 mt-4">
+                                    \${() => appData.quizzes[quizIndex()]?.options.map((opt, i) => Solid.html`
+                                        <button onclick=${() => handleQuizSelection(i, appData.quizzes[quizIndex()].correct)} 
+                                                class="w-full text-left p-4 rounded-xl border font-medium transition-all hover:bg-slate-50">
+                                            \${opt}
+                                        </button>
+                                    `)}
+                                </div>
+                            </div>
+                        </div>
+
+                    </main>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
