@@ -1,4 +1,31 @@
-{
+{{
+  "quizzes": [
+    {
+      "id": 1,
+      "difficulty": "Beginner",
+      "q": "What should you say to someone when greeting them at 9:00 AM?",
+      "options": ["Good evening!", "Good afternoon!", "Good morning!", "Good night!"],
+      "correct": 2
+    },
+    {
+      "id": 2,
+      "difficulty": "Beginner",
+      "q": "Complete the introduction: 'Hi, ________ name is Sarah.'",
+      "options": ["I", "my", "me", "mine"],
+      "correct": 1
+    }
+  ],
+  "exercises": [
+    {
+      "id": 1,
+      "type": "Conversation",
+      "situation": "You just met a new neighbor at your door. What is the most friendly and natural welcome?",
+      "options": ["Give me your keys.", "Hi! It is wonderful to meet you.", "Goodbye forever.", "Where is my car?"],
+      "correct": 1,
+      "note": "💡 'It is wonderful to meet you' is welcoming and highly polite for social greetings."
+    }
+  ]
+}
   "quizzes": [
     {
       "id": 1,
