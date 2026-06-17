@@ -1,29 +1,37 @@
-// 1. Destructure SolidJS features cleanly once
-const { createSignal, createEffect } = Solid;
+// 1. App State Navigation Signals (Initialized lazily once Solid loads)
+let _currentTab, _setCurrentTab;
+let _quizIndex, _setQuizIndex;
+let _quizAnswered, _setQuizAnswered;
+let _selectedQuizOpt, _setSelectedQuizOpt;
+let _userProgress, _setUserProgress;
 
-// 2. App State Navigation Signals
-export const [currentTab, setCurrentTab] = createSignal('dashboard');
-export const [quizIndex, setQuizIndex] = createSignal(0);
-export const [exIndex, setExIndex] = createSignal(0);
+export function currentTab() { return _currentTab(); }
+export function setCurrentTab(val) { _setCurrentTab(val); }
+export function quizIndex() { return _quizIndex(); }
+export function quizAnswered() { return _quizAnswered(); }
+export function selectedQuizOpt() { return _selectedQuizOpt(); }
+export function userProgress() { return _userProgress(); }
 
-// 3. Interactive UI State Signals
-export const [quizAnswered, setQuizAnswered] = createSignal(false);
-export const [exAnswered, setExAnswered] = createSignal(false);
-export const [selectedQuizOpt, setSelectedQuizOpt] = createSignal(null);
-export const [selectedExOpt, setSelectedExOpt] = createSignal(null);
+// This function safely boots up our signals after the browser loads SolidJS
+export function initAppSignals() {
+  const { createSignal, createEffect } = Solid;
 
-// 4. Progress Storage Logic (JSON + LocalStorage)
-const initialProgress = { completedQuizzes: [], completedExercises: [], score: 0 };
+  [_currentTab, _setCurrentTab] = createSignal('dashboard');
+  [_quizIndex, _setQuizIndex] = createSignal(0);
+  [_quizAnswered, _setQuizAnswered] = createSignal(false);
+  [_selectedQuizOpt, _setSelectedQuizOpt] = createSignal(null);
 
-export const [userProgress, setUserProgress] = createSignal(
-  JSON.parse(localStorage.getItem('learn_english_progress')) || initialProgress
-);
+  const initialProgress = { completedQuizzes: [], completedExercises: [], score: 0 };
+  [_userProgress, _setUserProgress] = createSignal(
+    JSON.parse(localStorage.getItem('learn_english_progress')) || initialProgress
+  );
 
-createEffect(() => {
-  localStorage.setItem('learn_english_progress', JSON.stringify(userProgress()));
-});
+  createEffect(() => {
+    localStorage.setItem('learn_english_progress', JSON.stringify(_userProgress()));
+  });
+}
 
-// 5. Interaction Functions
+// 2. Interaction Functions
 export function speakText(phrase) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
@@ -34,18 +42,18 @@ export function speakText(phrase) {
 }
 
 export function handleQuizSelection(optionIndex, correctIndex) {
-  if (quizAnswered()) return;
-  setSelectedQuizOpt(optionIndex);
-  setQuizAnswered(true);
+  if (_quizAnswered()) return;
+  _setSelectedQuizOpt(optionIndex);
+  _setQuizAnswered(true);
 
   if (optionIndex === correctIndex) {
     speakText("Correct!");
-    const current = userProgress();
-    if (!current.completedQuizzes.includes(quizIndex())) {
-      setUserProgress({
+    const current = _userProgress();
+    if (!current.completedQuizzes.includes(_quizIndex())) {
+      _setUserProgress({
         ...current,
         score: current.score + 10,
-        completedQuizzes: [...current.completedQuizzes, quizIndex()]
+        completedQuizzes: [...current.completedQuizzes, _quizIndex()]
       });
     }
   } else {
