@@ -1,4 +1,4 @@
-// 1. App State Navigation Signals (Initialized lazily once Solid loads)
+// 1. App State Navigation Signals
 let _currentTab, _setCurrentTab;
 let _quizIndex, _setQuizIndex;
 let _quizAnswered, _setQuizAnswered;
@@ -12,7 +12,7 @@ export function quizAnswered() { return _quizAnswered(); }
 export function selectedQuizOpt() { return _selectedQuizOpt(); }
 export function userProgress() { return _userProgress(); }
 
-// This function safely boots up our signals after the browser loads SolidJS
+// Initializes our reactive state signals safely after SolidJS loads
 export function initAppSignals() {
   const { createSignal, createEffect } = Solid;
 
@@ -22,16 +22,15 @@ export function initAppSignals() {
   [_selectedQuizOpt, _setSelectedQuizOpt] = createSignal(null);
 
   const initialProgress = { completedQuizzes: [], completedExercises: [], score: 0 };
-  [_userProgress, _setUserProgress] = createSignal(
-    JSON.parse(localStorage.getItem('learn_english_progress')) || initialProgress
-  );
+  const [prog, setProg] = createSignal(JSON.parse(localStorage.getItem('learn_english_progress')) || initialProgress);
+  _userProgress = prog; _setUserProgress = setProg;
 
   createEffect(() => {
     localStorage.setItem('learn_english_progress', JSON.stringify(_userProgress()));
   });
 }
 
-// 2. Interaction Functions
+// 2. Audio Text-to-Speech Controller
 export function speakText(phrase) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
@@ -41,6 +40,7 @@ export function speakText(phrase) {
   }
 }
 
+// 3. Game Logic Handler
 export function handleQuizSelection(optionIndex, correctIndex) {
   if (_quizAnswered()) return;
   _setSelectedQuizOpt(optionIndex);
