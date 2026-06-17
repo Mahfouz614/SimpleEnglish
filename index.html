@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnEnglish - Premium Learning Platform</title>
-    <!-- SolidJS Global Browser CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/solid-js/1.8.11/solid.browser.view.min.js"></script>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
-    <!-- Mounting target element for SolidJS -->
     <div id="root"></div>
 
     <script type="module">
         // Import our logical controllers from app.js
         import { 
-            currentTab, setCurrentTab, quizIndex, exIndex,
+            initAppSignals, currentTab, setCurrentTab, quizIndex, 
             quizAnswered, selectedQuizOpt, userProgress, 
             handleQuizSelection, speakText 
         } from './app.js';
+
+        // 1. Initialize the signals now that Solid is ready in the window global space
+        initAppSignals();
 
         // Attach handlers to window so the HTML string can see them directly
         window.navTo = (tab) => setCurrentTab(tab);
@@ -41,7 +41,6 @@
         function App() {
             return Solid.html`
                 <div class="min-h-screen flex flex-col">
-                    <!-- Navigation Layout -->
                     <nav class="bg-white shadow-sm border-b p-4 flex justify-between items-center">
                         <div class="flex items-center space-x-2 cursor-pointer" onclick="window.navTo('dashboard')">
                             <div class="p-2 bg-indigo-600 rounded-xl text-white"><i class="fa-solid fa-graduation-cap"></i></div>
@@ -53,10 +52,8 @@
                         </div>
                     </nav>
 
-                    <!-- Main Dynamic Content Wrapper -->
                     <main class="max-w-4xl w-full mx-auto p-6 flex-grow">
                         
-                        <!-- Dashboard UI Panel -->
                         <div class=\${() => currentTab() === 'dashboard' ? 'space-y-6' : 'hidden'}>
                             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-md">
                                 <h1 class="text-3xl font-black">Your Progress Dashboard</h1>
@@ -67,7 +64,6 @@
                             </div>
                         </div>
 
-                        <!-- Quiz View Interface Panel -->
                         <div class=\${() => currentTab() === 'quiz' ? 'space-y-4' : 'hidden'}>
                             <h2 class="text-xl font-black">Dynamic Quiz Panel</h2>
                             <div class="bg-white p-6 rounded-2xl border shadow-sm">
