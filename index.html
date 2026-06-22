@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnEnglish - Premium Learning Platform</title>
+    <!-- Tailwind CSS for modern responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for layout icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @keyframes fadeIn {
@@ -16,6 +18,7 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
 
+    <!-- NAVIGATION BAR -->
     <nav class="bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 sticky top-0 z-50 transition-all">
         <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-2 cursor-pointer group" onclick="switchTab('dashboard')">
@@ -28,23 +31,26 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-4 py-2 rounded-lg text-indigo-600 bg-white shadow-sm transition-all duration-200">Dashboard</button>
                 <button onclick="switchTab('lessons')" id="nav-lessons" class="px-4 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition-all duration-200">30 Lessons</button>
                 <button onclick="switchTab('quiz')" id="nav-quiz" class="px-4 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition-all duration-200">30 Quizzes</button>
-                <button onclick="switchTab('exercises')" id="nav-exercises" class="px-4 py-2 rounded-lg text-slate-600 hover:text-purple-600 transition-all duration-200 flex items-center gap-1">💪 20 Exercises</button>
+                <button onclick="switchTab('ai')" id="nav-ai" class="px-4 py-2 rounded-lg text-slate-600 hover:text-purple-600 transition-all duration-200 flex items-center gap-1">✨ Chat AI</button>
             </div>
         </div>
     </nav>
 
+    <!-- MAIN APP WRAPPER -->
     <main class="max-w-4xl mx-auto px-4 py-8">
 
+        <!-- ================= 1. DASHBOARD TAB ================= -->
         <section id="tab-dashboard" class="animate-fade-in space-y-8">
             <div class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="absolute -right-10 -bottom-10 text-white/10 text-9xl font-bold opacity-20"><i class="fa-solid fa-flag-usa"></i></div>
                 <div class="relative z-10 max-w-lg space-y-3">
                     <span class="bg-white/20 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Premium Edition</span>
                     <h1 class="text-3xl sm:text-4xl font-black tracking-tight">Your English Journey Starts Here!</h1>
-                    <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">Master standard English vocabulary, access full grammar pathways, take customized tests, and master real-life speaking exercises.</p>
+                    <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">Master standard English vocabulary, access full grammar pathways, take customized metrics tests, and talk with our smart engine.</p>
                 </div>
             </div>
 
+            <!-- Stats Engine Grid -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
                     <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Modules Loaded</span>
@@ -59,11 +65,12 @@
                     <span class="text-2xl font-black text-emerald-600 mt-2">30 Quizzes</span>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-                    <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Practical Training</span>
-                    <span class="text-2xl font-black text-purple-600 mt-2">20 Exercises</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Assistant Status</span>
+                    <span class="text-2xl font-black text-purple-600 mt-2 flex items-center gap-1">Online <span class="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-ping"></span></span>
                 </div>
             </div>
 
+            <!-- Quick Path Suggestion -->
             <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
                 <h3 class="font-black text-lg text-slate-900">Your Learning Tracks</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -87,6 +94,7 @@
         </section>
 
 
+        <!-- ================= 2. 30 LESSONS TAB ================= -->
         <section id="tab-lessons" class="hidden animate-fade-in space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-4">
                 <div>
@@ -100,32 +108,34 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-3.5" id="lessons-render-grid">
-                </div>
+            <!-- Target Hub where app.js will render lessons -->
+            <div class="grid grid-cols-1 gap-3.5" id="lessons-render-grid"></div>
         </section>
 
 
+        <!-- ================= 3. 30 QUIZZES TAB ================= -->
         <section id="tab-quiz" class="hidden animate-fade-in space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
+                <!-- Left Menu Grid for numbers -->
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm h-fit space-y-4">
                     <div>
                         <h3 class="font-black text-lg text-slate-900">Quiz Selection</h3>
                         <p class="text-xs text-slate-400">Pick any of the 30 module check tests below:</p>
                     </div>
-                    <div class="grid grid-cols-5 gap-2 max-h-64 overflow-y-auto pr-1" id="quiz-badge-grid">
-                        </div>
+                    <!-- Target Hub where app.js will render quiz option nodes -->
+                    <div class="grid grid-cols-5 gap-2 max-h-64 overflow-y-auto pr-1" id="quiz-badge-grid"></div>
                 </div>
 
+                <!-- Active Question Window Content -->
                 <div class="md:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative flex flex-col justify-between" id="active-quiz-terminal-card">
                     <div>
                         <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                             <span class="text-xs font-black tracking-wider uppercase text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md" id="active-quiz-badge-id">Quiz 1</span>
                             <span class="text-xs text-slate-400 font-semibold" id="active-quiz-difficulty-label">Difficulty: Beginner</span>
                         </div>
-                        <h2 class="text-base sm:text-lg font-bold text-slate-800 mt-4 leading-snug" id="active-quiz-prompt">Loading test text description configuration string details...</h2>
-                        <div class="grid grid-cols-1 gap-2.5 mt-6" id="active-quiz-alternatives-group">
-                            </div>
+                        <h2 class="text-base sm:text-lg font-bold text-slate-800 mt-4 leading-snug" id="active-quiz-prompt">Select a quiz to load...</h2>
+                        <div class="grid grid-cols-1 gap-2.5 mt-6" id="active-quiz-alternatives-group"></div>
                     </div>
                     <div class="pt-4 flex justify-between items-center hidden border-t border-slate-100 mt-6" id="active-quiz-actions-bar">
                         <p class="text-xs font-bold text-emerald-600" id="quiz-correct-feedback-str"></p>
@@ -137,373 +147,42 @@
         </section>
 
 
-        <section id="tab-exercises" class="hidden animate-fade-in space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm h-fit space-y-4">
+        <!-- ================= 4. AI CHAT HELPER TAB ================= -->
+        <section id="tab-ai" class="hidden animate-fade-in space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-4">
+                <div class="flex items-center space-x-3 border-b border-slate-100 pb-4">
+                    <div class="h-11 w-11 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-xl animate-pulse"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <div>
-                        <h3 class="font-black text-lg text-slate-900">Real-Life Exercises</h3>
-                        <p class="text-xs text-slate-400">Select an exercise challenge scenario below (1-20):</p>
-                    </div>
-                    <div class="grid grid-cols-5 gap-2 max-h-64 overflow-y-auto pr-1" id="exercise-badge-grid">
-                        </div>
-                </div>
-
-                <div class="md:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative flex flex-col justify-between" id="active-ex-terminal-card">
-                    <div>
-                        <div class="flex justify-between items-center border-b border-slate-100 pb-3">
-                            <span class="text-xs font-black tracking-wider uppercase text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md" id="active-ex-badge-id">Exercise 1</span>
-                            <span class="text-xs font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded" id="active-ex-situation-label">Context: Social Situation</span>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-xl mt-4 space-y-2">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">The Mission:</span>
-                            <p class="text-sm sm:text-base text-slate-800 font-medium" id="active-ex-situation-desc">Loading exercise description context...</p>
-                        </div>
-                        <h2 class="text-base font-bold text-slate-900 mt-6" id="active-ex-prompt">Choose the best, most logical sentence response:</h2>
-                        <div class="grid grid-cols-1 gap-2.5 mt-3" id="active-ex-alternatives-group">
-                            </div>
-                    </div>
-                    <div class="pt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 hidden border-t border-slate-100 mt-6" id="active-ex-actions-bar">
-                        <p class="text-xs font-bold text-purple-600 leading-relaxed" id="ex-correct-feedback-str"></p>
-                        <button onclick="triggerExNextAutoSequence()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs transition shrink-0 active:scale-95">Next Exercise <i class="fa-solid fa-arrow-right ml-0.5"></i></button>
+                        <h2 class="text-xl font-black text-slate-900">Smart Semantics AI Assistant</h2>
+                        <p class="text-xs text-slate-500">Ask vocabulary help, grammar structures, spelling guides, or simple translations.</p>
                     </div>
                 </div>
 
+                <!-- Chat Dialog Window Port -->
+                <div class="bg-slate-50 rounded-2xl p-4 h-80 overflow-y-auto border border-slate-200/60 space-y-3.5 text-sm" id="chat-window-viewport">
+                    <div class="flex items-start space-x-2.5 animate-fade-in">
+                        <div class="bg-purple-600 text-white font-black text-xxs h-7 w-7 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-purple-200">AI</div>
+                        <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3.5 max-w-[85%] text-slate-700 shadow-sm leading-relaxed">
+                            Hello there! I am your AI helper engine. Ask me an English question to get started.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input Controls Area -->
+                <div class="flex gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+                    <input type="text" id="chat-input-field" placeholder="Ask your language question here..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition shadow-inner">
+                    <button onclick="processAIEngineRequest()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 rounded-xl transition text-sm flex items-center gap-1.5 shadow-md shadow-purple-100 active:scale-95"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                </div>
             </div>
         </section>
 
     </main>
 
     <footer class="text-center py-10 text-xs text-slate-400 font-bold border-t border-slate-200 mt-16 bg-white">
-        &copy; 2026 LearnEnglish. Fully Functional 30-30-20 Module Node System.
+        &copy; 2026 LearnEnglish. All UI Layers Initialized.
     </footer>
 
-
-    <script>
-        // Speech Synthesis Audio Player Utility
-        function speakText(phrase) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); 
-                const item = new SpeechSynthesisUtterance(phrase);
-                item.lang = 'en-US';
-                item.rate = 0.88; 
-                window.speechSynthesis.speak(item);
-            }
-        }
-
-        // --- COMPLETE 30 LESSON MATRIX ARCHITECTURE ---
-        const lessonsDataset = [
-            // BEGINNER LEVEL (1 - 10)
-            { id: 1, level: "beginner", title: "Saying Basic Greetings", highlight: "Hello & Good Morning", text: "Use 'Good morning' before 12 PM, 'Good afternoon' from 12 PM to 5 PM, and 'Good evening' after 5 PM.", sample: "Good morning! How are you today?" },
-            { id: 2, level: "beginner", title: "Introducing Yourself Easily", highlight: "My name is...", text: "To share your identity cleanly, use 'I am...' or 'My name is...'. Follow up with 'Nice to meet you!'", sample: "Hi, my name is Alex. Nice to meet you!" },
-            { id: 3, level: "beginner", title: "Saying Thank You Politely", highlight: "Gratitude Expressions", text: "Don't just say 'Thanks'. To sound warmer, say 'Thank you so much' or 'I really appreciate it'.", sample: "Thank you so much for your help today." },
-            { id: 4, level: "beginner", title: "Asking for the Bathroom Location", highlight: "Survival Questioning", text: "When in public spaces, use 'Excuse me' before asking 'Where is the bathroom?' to ensure politeness.", sample: "Excuse me, where is the bathroom please?" },
-            { id: 5, level: "beginner", title: "Identifying Common Food Items", highlight: "Core Nouns", text: "Basic items: Bread, Water, Milk, Apple, Chicken. Always pair them with verbs like 'Eat' or 'Drink'.", sample: "I would like to drink a glass of water." },
-            { id: 6, level: "beginner", title: "Counting Numbers 1 to 10", highlight: "Essential Digit Sets", text: "Master spelling sets: One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten.", sample: "I have three apples on my table." },
-            { id: 7, level: "beginner", title: "Days of the Week Schedule", highlight: "Time Orientations", text: "Days are always capitalized: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.", sample: "We will meet again next Monday." },
-            { id: 8, level: "beginner", title: "Expressing Likes & Dislikes", highlight: "I love vs. I don't like", text: "To show positive interest use 'I like...' or 'I love...'. Use 'I do not like...' for negative interest.", sample: "I like to read books, but I don't like hot weather." },
-            { id: 9, level: "beginner", title: "Telling Basic Time Details", highlight: "What time is it?", text: "When reading time directly, use 'It is [Hour] o'clock' for perfect top of the hour moments.", sample: "Look at the watch, it is exactly four o'clock." },
-            { id: 10, level: "beginner", title: "Simple Colors Around Us", highlight: "Descriptive Adjectives", text: "Color descriptors modify nouns by standing directly in front of them: Red, Blue, Green, Black, White.", sample: "She is wearing a beautiful blue dress." },
-
-            // INTERMEDIATE LEVEL (11 - 20)
-            { id: 11, level: "intermediate", title: "Talking About Yesterday's Events", highlight: "Regular Past Tense (-ed)", text: "For simple past activities, add '-ed' to normal actions. Walk changes to walked, cook changes to cooked.", sample: "Yesterday, I cooked a delicious dinner at home." },
-            { id: 12, level: "intermediate", title: "Mastering Your vs. You're Rules", highlight: "Homophone Management", text: "'Your' shows ownership. 'You're' is a strict contraction spelling representation shortcut for 'You are'.", sample: "You're going to love your new study workspace." },
-            { id: 13, level: "intermediate", title: "Describing Symptoms to a Doctor", highlight: "Medical Phrasings", text: "Use the helper action phrase 'I have a...' followed by headache, stomachache, fever, or cough.", sample: "I have a terrible headache and a sore throat." },
-            { id: 14, level: "intermediate", title: "Ordering Food at a Restaurant", highlight: "I would like...", text: "Avoid ordering by saying 'I want...'. Use the polite form 'I would like to order...' to be respectful.", sample: "I would like to order the grilled chicken, please." },
-            { id: 15, level: "intermediate", title: "Making Clean Future Plans", highlight: "Will vs. Going to", text: "Use 'going to' for structured plans you decided earlier. Use 'will' for instant decisions made right now.", sample: "Tomorrow, I am going to visit my grandmother." },
-            { id: 16, level: "intermediate", title: "Comparing Two Objects Clearly", highlight: "Comparative Structures (-er)", text: "Add '-er' to short words followed by 'than' to compare things: bigger than, taller than, faster than.", sample: "My new phone is much faster than my old one." },
-            { id: 17, level: "intermediate", title: "Giving Clear Street Directions", highlight: "Navigation Terminology", text: "Essential routing phrases: 'Turn left', 'Turn right', 'Go straight ahead', 'Cross the street'.", sample: "Go straight ahead and turn left at the supermarket." },
-            { id: 18, level: "intermediate", title: "Checking in at an Airport Desk", highlight: "Travel English", text: "Key terms: Passport, boarding pass, luggage bag, window seat, aisle seat, security screening gate.", sample: "Here is my passport and my boarding pass, sir." },
-            { id: 19, level: "intermediate", title: "Using Since vs. For Correctly", highlight: "Duration Metrics Tracker", text: "Use 'since' for an exact starting point in time. Use 'for' when defining a total amount/length of time.", sample: "I have lived here for five years, since 2021." },
-            { id: 20, level: "intermediate", title: "Making Polite Phone Call Requests", highlight: "Can I speak to...?", text: "When answering, say 'This is [Name] speaking'. To reach someone else say 'May I please speak to...?'", sample: "Hello, this is John speaking. May I speak to Mary?" },
-
-            // ADVANCED LEVEL (21 - 30)
-            { id: 21, level: "advanced", title: "Feeling Under the Weather", highlight: "Idiom Deep-Dive", text: "An idiom that has nothing to do with rain. It means you are feeling slightly sick, tired, or low energy.", sample: "I cannot come to work today because I feel under the weather." },
-            { id: 22, level: "advanced", title: "Business Email Etiquette basics", highlight: "Professional Correspondence", text: "Start formal emails with 'Dear [Name],' or 'I hope this email finds you well,' and close with 'Best regards,'.", sample: "I look forward to hearing from you. Best regards." },
-            { id: 23, level: "advanced", title: "A Piece of Cake Expression", highlight: "Idiomatic Simplicity", text: "When an assignment, test, or workload target is incredibly simple to finish, it is a 'piece of cake'.", sample: "Don't worry about the history test; it was a piece of cake!" },
-            { id: 24, level: "advanced", title: "Using the Present Perfect Tense", highlight: "Have + Past Participle", text: "Use this structure for actions that happened in the past but still affect the present moment right now.", sample: "I have lost my house keys, so I cannot get inside." },
-            { id: 25, level: "advanced", title: "Hypothetical Dreams & Ideas", highlight: "Second Conditional", text: "Use the structure 'If I were... I would...' to talk about imaginary situations that are currently not real.", sample: "If I won the lottery prize, I would travel the world." },
-            { id: 26, level: "advanced", title: "Biting the Bullet Bravely", highlight: "Action Idiomatic Metaphor", text: "To 'bite the bullet' means deciding to finally face a difficult or unpleasant situation with courage.", sample: "I hate dental visits, but I need to bite the bullet and go." },
-            { id: 27, level: "advanced", title: "Active vs. Passive Voice Nuance", highlight: "Structure Shift", text: "Active voice emphasizes who did the action. Passive emphasizes the object that received the action.", sample: "Active: She wrote the report. Passive: The report was written by her." },
-            { id: 28, level: "advanced", title: "Formal Negotiations Terms", highlight: "Professional Interaction", text: "Key professional phrasings: 'Win-win situation', 'Compromise agreement', 'Counter-offer parameters'.", sample: "We are looking for an agreement that creates a win-win situation." },
-            { id: 29, level: "advanced", title: "Spilling the Beans Secretly", highlight: "Idiomatic Disclosure", text: "To 'spill the beans' means to accidentally or intentionally reveal private or secret information.", sample: "Please don't spill the beans about the surprise party!" },
-            { id: 30, level: "advanced", title: "Mastering English Prepositions", highlight: "In vs. On vs. At", text: "Use 'In' for global spaces/months, 'On' for flat surfaces/exact days, and 'At' for exact localized address pinpoints.", sample: "We are meeting at the station on Friday at 3 PM." }
-        ];
-
-        // --- COMPLETE 30 INDIVIDUAL QUIZZES REGISTRY ---
-        const quizzesDataset = [
-            { id: 1, difficulty: "Beginner", q: "What should you say to someone when greeting them at 9:00 AM?", options: ["Good evening!", "Good afternoon!", "Good morning!", "Good night!"], correct: 2 },
-            { id: 2, difficulty: "Beginner", q: "Complete the introduction: 'Hi, ________ name is Sarah.'", options: ["I", "my", "me", "mine"], correct: 1 },
-            { id: 3, difficulty: "Beginner", q: "Which phrasing is the most polite way to show gratitude?", options: ["Thanks.", "Thank you so much.", "Okay.", "Give me that."], correct: 1 },
-            { id: 4, difficulty: "Beginner", q: "How do you ask for the restroom politely?", options: ["Where is bathroom?", "Excuse me, where is the bathroom?", "Bathroom now!", "Hey, look over here."], correct: 1 },
-            { id: 5, difficulty: "Beginner", q: "Which of the following is an everyday item you can drink?", options: ["Bread", "Apple", "Water", "Chicken"], correct: 2 },
-            { id: 6, difficulty: "Beginner", q: "What is the correct spelling for the number that comes after 'Two'?", options: ["Tree", "There", "Three", "Them"], correct: 2 },
-            { id: 7, difficulty: "Beginner", q: "Which day comes directly after Tuesday?", options: ["Monday", "Thursday", "Wednesday", "Friday"], correct: 2 },
-            { id: 8, difficulty: "Beginner", q: "Identify the correct way to express a dislike:", options: ["I no like cold rain.", "I do not like cold rain.", "I not like cold rain.", "I loving cold rain."], correct: 1 },
-            { id: 9, difficulty: "Beginner", q: "If the watch hands point straight to 5:00, you say: 'It is five ________.'", options: ["time", "clock", "hours", "o'clock"], correct: 3 },
-            { id: 10, difficulty: "Beginner", q: "Complete this statement: 'The sky is clear and ________.'", options: ["blue", "bread", "apple", "running"], correct: 0 },
-            { id: 11, difficulty: "Intermediate", q: "How do you state: 'I walk to the market' as a completed past event yesterday?", options: ["Yesterday I walk.", "Yesterday I walked.", "Yesterday I walking.", "Yesterday I will walk."], correct: 1 },
-            { id: 12, difficulty: "Intermediate", q: "Which sentence uses the possessive 'your' rule correctly?", options: ["Is this you're book?", "Is this your book?", "Is this yours book?", "You're book is here."], correct: 1 },
-            { id: 13, difficulty: "Intermediate", q: "What symptom statement matches an aching, painful head area?", options: ["I have a fever.", "I have a cough.", "I have a headache.", "I have a broken toe."], correct: 2 },
-            { id: 14, difficulty: "Intermediate", q: "What is the standard polite form used when ordering at a restaurant table?", options: ["Give me the soup.", "I want the soup.", "I would like the soup, please.", "Bring soup fast."], correct: 2 },
-            { id: 15, difficulty: "Intermediate", q: "Which text implies a plan made in advance?", options: ["I am going to visit Paris next month.", "I will visit Paris right now.", "I visit Paris yesterday.", "I visits Paris."], correct: 0 },
-            { id: 16, difficulty: "Intermediate", q: "Complete the comparison: 'An elephant is ________ than a standard dog.'", options: ["biggest", "big", "bigger", "more big"], correct: 2 },
-            { id: 17, difficulty: "Intermediate", q: "What directional command instructs someone to change paths to the left side?", options: ["Go straight.", "Turn left.", "Cross over.", "Stop here."], correct: 1 },
-            { id: 18, difficulty: "Intermediate", q: "What travel document shows identity clearance at an airport terminal gates area?", options: ["Luggage ticket", "Boarding note", "Passport", "Receipt card"], correct: 2 },
-            { id: 19, difficulty: "Intermediate", q: "Complete the timeline tracking string: 'I have studied here ________ three hours.'", options: ["since", "for", "at", "on"], correct: 1 },
-            { id: 20, difficulty: "Intermediate", q: "How do you ask for Mary politely on a telephone connection?", options: ["Where Mary?", "May I please speak to Mary?", "Mary talk now.", "Who is Mary?"], correct: 1 },
-            { id: 21, difficulty: "Advanced", q: "If your friend says they are 'under the weather', what do they mean?", options: ["They are getting rained on.", "They feel slightly sick.", "They are happy.", "They are running fast."], correct: 1 },
-            { id: 22, difficulty: "Advanced", q: "What is a standard, highly professional way to sign off a business message?", options: ["Bye bye!", "See ya later,", "Best regards,", "With hugs,"], correct: 2 },
-            { id: 23, difficulty: "Advanced", q: "If an exam was a 'piece of cake', it means the test items were ________.", options: ["Extremely difficult", "Delicious to eat", "Very easy", "Full of math"], correct: 2 },
-            { id: 24, difficulty: "Advanced", q: "Complete the phrase: 'I ________ my wallet, so I cannot pay for lunch right now.'", options: ["lose", "have lost", "losing", "loses"], correct: 1 },
-            { id: 25, difficulty: "Advanced", q: "Complete the dream rule scenario: 'If I ________ rich, I would buy a large yacht.'", options: ["am", "was", "were", "be"], correct: 2 },
-            { id: 26, difficulty: "Advanced", q: "What does it mean to 'bite the bullet' in a tough situation?", options: ["To eat metal parts", "To face a hard situation with courage", "To run away from danger", "To start crying loud"], correct: 1 },
-            { id: 27, difficulty: "Advanced", q: "Identify the passive voice version of 'The cat chased the mouse.'", options: ["The mouse chased the cat.", "The mouse was chased by the cat.", "The cat was chasing the mouse.", "The cat chasing mouse."], correct: 1 },
-            { id: 28, difficulty: "Advanced", q: "What phrase represents a business negotiation where both sides benefit?", options: ["Lose-lose situation", "Win-win situation", "Strict deadline parameters", "Break-even target points"], correct: 1 },
-            { id: 29, difficulty: "Advanced", q: "If someone asks you not to 'spill the beans', they want you to keep a ________.", options: ["Secret", "Vegetable bag", "Dinner recipe", "Promise item"], correct: 0 },
-            { id: 30, difficulty: "Advanced", q: "Choose the correct placement option: 'We will meet ________ Friday afternoon.'", options: ["at", "in", "on", "to"], correct: 2 }
-        ];
-
-        // --- NEW 20 DYNAMIC PRACTICE EXERCISES DATA SET ---
-        const exercisesDataset = [
-            { id: 1, type: "Conversation", situation: "You just met a new neighbor at your door. What is the most friendly and natural welcome?", options: ["Give me your keys.", "Hi! It is wonderful to meet you.", "Goodbye forever.", "Where is my car?"], correct: 1, note: "💡 'It is wonderful to meet you' is welcoming and highly polite for social greetings." },
-            { id: 2, type: "Coffee Shop", situation: "You are at a coffee shop counter. How do you request a fresh hot espresso cleanly?", options: ["Espresso immediately!", "I want coffee.", "Can I please get a hot espresso?", "Give me espresso."], correct: 2, note: "💡 Starting with 'Can I please get...' is regular conversational courtesy at any counter." },
-            { id: 3, type: "Spelling Correction", situation: "Find the option that contains absolutely no spelling mistakes:", options: ["The collaegue was very helpfull.", "The colleague was very helpful.", "The collegue was very helfpul.", "The colleague was verry helpful."], correct: 1, note: "💡 C-O-L-L-E-A-G-U-E and H-E-L-P-F-U-L are the correct spellings." },
-            { id: 4, type: "Grammar Repair", situation: "Fix this broken sentence: 'She do not like tea.'", options: ["She do not liking tea.", "She don't like tea.", "She does not like tea.", "She aren't liking tea."], correct: 2, note: "💡 For singular pronouns (He/She/It), always use 'does not' instead of 'do not'." },
-            { id: 5, type: "Workplace Call", situation: "The office phone rings. How do you introduce yourself professionally upon picking up?", options: ["Hello, who are you?", "This is Alex speaking. How can I help you?", "What do you want?", "Talk to me now."], correct: 1, note: "💡 'This is [Name] speaking' is the global gold-standard format for business calls." },
-            { id: 6, type: "Time and Schedule", situation: "Your friend asks if you are free at 3 PM. How do you confirm you have no plans?", options: ["Yes, I am free at three o'clock.", "No, I am busy then.", "Time is fast.", "I walk at three."], correct: 0, note: "💡 Confirming with 'I am free at...' tells them your schedule is open." },
-            { id: 7, type: "Apologizing", situation: "You accidentally stepped on a person's foot on a crowded bus. What do you say?", options: ["Watch out!", "Oh, I'm so sorry! Are you okay?", "Move away.", "It is fine."], correct: 1, note: "💡 Saying 'Oh, I'm so sorry! Are you okay?' is the best way to handle accidents gracefully." },
-            { id: 8, type: "Hotel Check-in", situation: "You arrive at a hotel reception desk. How do you tell them you booked a room online?", options: ["I want a bed.", "Hello, I have a reservation under the name Smith.", "Give me a key, please.", "Where is my room?"], correct: 1, note: "💡 'I have a reservation under the name...' is exactly what clerks need to see." },
-            { id: 9, type: "Praising Someone", situation: "Your coworker did an incredible job presenting a project. How do you congratulate them?", options: ["It was okay.", "Fantastic job! You did amazing.", "You speak too much.", "Never mind."], correct: 1, note: "💡 'Fantastic job! You did amazing' boosts workspace confidence and morale." },
-            { id: 10, type: "Expressing Pain", situation: "Your stomach feels sick at school. How do you describe the issue to the school nurse?", options: ["My head hurts.", "I have a terrible stomachache.", "I am very hungry.", "I walk too much."], correct: 1, note: "💡 Pain in the stomach area is called a 'stomachache'." },
-            { id: 11, type: "Shopping Help", situation: "You are looking for shoes in a store. How do you ask the clerk for pricing?", options: ["How much do these shoes cost?", "Give me these shoes.", "Are shoes cheap?", "Money for shoes."], correct: 0, note: "💡 Use 'How much does/do [Item] cost?' to find out the price of items." },
-            { id: 12, type: "Asking for Clarity", situation: "Someone is speaking way too fast and you don't understand them. What do you say?", options: ["Stop talking.", "Could you please slow down a bit?", "You are wrong.", "What?"], correct: 1, note: "💡 'Could you please slow down a bit?' is highly polite and guides the speaker effectively." },
-            { id: 13, type: "Offering Assistance", situation: "An elderly person is struggling to carry heavy bags. How do you offer help?", options: ["Bags are heavy.", "Would you like some help with those bags?", "Give me that.", "Look out!"], correct: 1, note: "💡 Asking 'Would you like some help with...?' is perfect for offering kind support." },
-            { id: 14, type: "Weather Talk", situation: "It is pouring rain outside. How do you comment on the storm naturally to a friend?", options: ["It is very sunny today.", "Wow, it is really coming down out there!", "The sky is yellow.", "I like swimming."], correct: 1, note: "💡 Idiomatically, 'It is really coming down' means it is raining heavily." },
-            { id: 15, type: "Giving Directions", situation: "A traveler asks where the train terminal is. How do you guide them forward clearly?", options: ["Go straight for two blocks, then turn right.", "Trains are fast.", "Follow me forever.", "I don't know trains."], correct: 0, note: "💡 Clear navigation points like 'Go straight... then turn...' provide accurate tracking." },
-            { id: 16, type: "Making Plans", situation: "You want to invite a classmate to study together this weekend. How do you ask?", options: ["Come study now.", "Are you free to study together this Saturday?", "You must study with me.", "Books are good."], correct: 1, note: "💡 'Are you free to... this Saturday?' leaves room for a polite confirmation or alternative." },
-            { id: 17, type: "Job Interview", situation: "The interviewer asks about your skills. How do you start your sentence confidently?", options: ["I am good at everything.", "I have strong communication and organizational skills.", "Maybe I am okay.", "Ask someone else."], correct: 1, note: "💡 Naming exact professional assets like 'communication and organizational skills' sounds excellent." },
-            { id: 18, type: "Leaving a Social Event", situation: "The party is ending and you want to say goodbye to the host. What do you say?", options: ["I am leaving now.", "Thank you for having me! I had a wonderful time.", "Goodbye forever.", "The party was loud."], correct: 1, note: "💡 'Thank you for having me! I had a wonderful time' is the proper way to thank a host." },
-            { id: 19, type: "Asking for Opinions", situation: "You just bought a new jacket and want your friend's thoughts on it. How do you ask?", options: ["Look at this jacket.", "What do you think of my new jacket?", "Do you hate my clothes?", "Jacket is warm."], correct: 1, note: "💡 Asking 'What do you think of...?' directly invites a friendly, open opinion." },
-            { id: 20, type: "Checking Progress", situation: "You want to ask your student if they are done with their assignment sheet. What do you ask?", options: ["Stop writing now.", "Have you finished the exercise yet?", "Are you slow?", "Paper is done."], correct: 1, note: "💡 'Have you finished [Task] yet?' checks their progress clearly and professionally." }
-        ];
-
-        // --- CORE SELECTION POINTERS ---
-        let globalSelectedQuizIndex = 0;
-        let activeQuizAnsweredState = false;
-
-        let globalSelectedExIndex = 0;
-        let activeExAnsweredState = false;
-
-        // Clean Core Tab Controller Navigation Function
-        function switchTab(tabId) {
-            const tabsList = ['dashboard', 'lessons', 'quiz', 'exercises'];
-            tabsList.forEach(id => {
-                document.getElementById(`tab-${id}`).classList.add('hidden');
-                document.getElementById(`nav-${id}`).className = "px-4 py-2 rounded-lg text-slate-600 hover:text-indigo-600 transition-all duration-200";
-            });
-
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            
-            const highlightClassStr = (tabId === 'exercises') 
-                ? "px-4 py-2 rounded-lg text-purple-600 bg-purple-50 shadow-sm border border-purple-100 font-bold" 
-                : "px-4 py-2 rounded-lg text-indigo-600 bg-white shadow-sm border border-slate-100 font-bold";
-            
-            document.getElementById(`nav-${tabId}`).className = highlightClassStr;
-        }
-
-        // --- LESSON BUILDER COMPONENT PIPELINES ---
-        function filterContent(levelFilterKey) {
-            switchTab('lessons');
-            
-            const btnBeginner = document.getElementById('btn-filter-beginner');
-            const btnIntermediate = document.getElementById('btn-filter-intermediate');
-            const btnAdvanced = document.getElementById('btn-filter-advanced');
-            
-            [btnBeginner, btnIntermediate, btnAdvanced].forEach(b => b.className = "px-3 py-1.5 rounded-lg text-slate-500 transition");
-            document.getElementById(`btn-filter-${levelFilterKey}`).className = "px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 font-bold";
-
-            const filteredArray = lessonsDataset.filter(l => l.level === levelFilterKey);
-            const gridContainer = document.getElementById('lessons-render-grid');
-            gridContainer.innerHTML = '';
-
-            filteredArray.forEach(item => {
-                const elementRow = document.createElement('div');
-                elementRow.className = "bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:border-slate-300 transform hover:scale-[1.005] transition duration-200 animate-fade-in";
-                elementRow.innerHTML = `
-                    <div class="space-y-1 max-w-xl">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xs font-black px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">Lesson ${item.id}</span>
-                            <span class="text-xs font-bold text-indigo-600">${item.highlight}</span>
-                        </div>
-                        <h4 class="font-black text-slate-900 text-lg">${item.title}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">${item.text}</p>
-                        <p class="text-xs text-indigo-600 font-medium italic mt-1 bg-indigo-50/50 px-2.5 py-1 rounded-md border border-indigo-100/30 w-fit">"${item.sample}"</p>
-                    </div>
-                    <button onclick="speakText('${item.sample.replace(/'/g, "\\'")}')" class="h-11 w-11 rounded-xl bg-slate-50 text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-200 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm hover:rotate-6">
-                        <i class="fa-solid fa-volume-high text-sm"></i>
-                    </button>
-                `;
-                gridContainer.appendChild(elementRow);
-            });
-        }
-
-        // --- INTERACTIVE QUIZ ENGINE CONTROLLER ---
-        function initializeQuizInterfaceModule() {
-            const indexGrid = document.getElementById('quiz-badge-grid');
-            indexGrid.innerHTML = '';
-
-            quizzesDataset.forEach((quizItem, idx) => {
-                const badgeButton = document.createElement('button');
-                badgeButton.id = `quiz-selection-node-idx-${idx}`;
-                badgeButton.className = "p-2 text-center rounded-xl font-bold border text-xs shadow-sm cursor-pointer transition duration-150 transform hover:scale-105 active:scale-95 border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
-                badgeButton.innerText = quizItem.id;
-                badgeButton.onclick = () => renderQuizScreenIndexRecord(idx);
-                indexGrid.appendChild(badgeButton);
-            });
-            renderQuizScreenIndexRecord(0);
-        }
-
-        function renderQuizScreenIndexRecord(targetIndexPointer) {
-            globalSelectedQuizIndex = targetIndexPointer;
-            activeQuizAnsweredState = false;
-
-            document.getElementById('active-quiz-actions-bar').classList.add('hidden');
-
-            quizzesDataset.forEach((_, idx) => {
-                const el = document.getElementById(`quiz-selection-node-idx-${idx}`);
-                if(el) el.className = "p-2 text-center rounded-xl font-bold border text-xs shadow-sm transition duration-150 transform hover:scale-105 border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
-            });
-            const activeNode = document.getElementById(`quiz-selection-node-idx-${targetIndexPointer}`);
-            if(activeNode) activeNode.className = "p-2 text-center rounded-xl font-black border text-xs shadow-md border-indigo-600 bg-indigo-600 text-white transform scale-105";
-
-            const data = quizzesDataset[targetIndexPointer];
-            document.getElementById('active-quiz-badge-id').innerText = `Quiz ${data.id}`;
-            document.getElementById('active-quiz-difficulty-label').innerText = `Difficulty: ${data.difficulty}`;
-            document.getElementById('active-quiz-prompt').innerText = data.q;
-
-            const box = document.getElementById('active-quiz-alternatives-group');
-            box.innerHTML = '';
-
-            data.options.forEach((alternativeText, optionIndex) => {
-                const optBtn = document.createElement('button');
-                optBtn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50/80 transition-all text-sm font-semibold flex justify-between items-center outline-none hover:border-slate-300 animate-fade-in";
-                optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-regular fa-circle text-slate-300"></i>`;
-                
-                optBtn.onclick = () => {
-                    if(activeQuizAnsweredState) return;
-                    activeQuizAnsweredState = true;
-
-                    const activeOptionElements = box.getElementsByTagName('button');
-                    for(let b of activeOptionElements) b.disabled = true;
-
-                    if(optionIndex === data.correct) {
-                        optBtn.className = "w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-sm flex justify-between items-center shadow-inner";
-                        optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
-                        document.getElementById('quiz-correct-feedback-str').innerText = "✨ Perfect Answer!";
-                        speakText("Correct!");
-                    } else {
-                        optBtn.className = "w-full text-left p-3.5 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 font-bold text-sm flex justify-between items-center shadow-inner";
-                        optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
-                        
-                        activeOptionElements[data.correct].className = "w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-sm flex justify-between items-center";
-                        activeOptionElements[data.correct].innerHTML = `<span>${data.options[data.correct]}</span><i class="fa-solid fa-circle-check text-emerald-600"></i>`;
-                        document.getElementById('quiz-correct-feedback-str').innerText = "Keep practicing!";
-                    }
-                    document.getElementById('active-quiz-actions-bar').classList.remove('hidden');
-                };
-                box.appendChild(optBtn);
-            });
-        }
-
-        function triggerQuizNextAutoSequence() {
-            const indexValue = (globalSelectedQuizIndex + 1) % quizzesDataset.length;
-            renderQuizScreenIndexRecord(indexValue);
-            document.getElementById('active-quiz-terminal-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-
-        // --- INTERACTIVE EXERCISES COMPONENT ENGINE ---
-        function initializeExercisesModule() {
-            const exGrid = document.getElementById('exercise-badge-grid');
-            exGrid.innerHTML = '';
-
-            exercisesDataset.forEach((exItem, idx) => {
-                const exBadgeBtn = document.createElement('button');
-                exBadgeBtn.id = `ex-selection-node-idx-${idx}`;
-                exBadgeBtn.className = "p-2 text-center rounded-xl font-bold border text-xs shadow-sm cursor-pointer transition duration-150 transform hover:scale-105 active:scale-95 border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
-                exBadgeBtn.innerText = exItem.id;
-                exBadgeBtn.onclick = () => renderExerciseScreenIndexRecord(idx);
-                exGrid.appendChild(exBadgeBtn);
-            });
-            renderExerciseScreenIndexRecord(0);
-        }
-
-        function renderExerciseScreenIndexRecord(targetExPointer) {
-            globalSelectedExIndex = targetExPointer;
-            activeExAnsweredState = false;
-
-            document.getElementById('active-ex-actions-bar').classList.add('hidden');
-
-            exercisesDataset.forEach((_, idx) => {
-                const el = document.getElementById(`ex-selection-node-idx-${idx}`);
-                if(el) el.className = "p-2 text-center rounded-xl font-bold border text-xs shadow-sm transition duration-150 transform hover:scale-105 border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
-            });
-            const activeNode = document.getElementById(`ex-selection-node-idx-${targetExPointer}`);
-            if(activeNode) activeNode.className = "p-2 text-center rounded-xl font-black border text-xs shadow-md border-purple-600 bg-purple-600 text-white transform scale-105";
-
-            const data = exercisesDataset[targetExPointer];
-            document.getElementById('active-ex-badge-id').innerText = `Exercise ${data.id}`;
-            document.getElementById('active-ex-situation-label').innerText = `Context: ${data.type}`;
-            document.getElementById('active-ex-situation-desc').innerText = data.situation;
-
-            const box = document.getElementById('active-ex-alternatives-group');
-            box.innerHTML = '';
-
-            data.options.forEach((alternativeText, optionIndex) => {
-                const optBtn = document.createElement('button');
-                optBtn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50/80 transition-all text-sm font-semibold flex justify-between items-center outline-none hover:border-slate-300 animate-fade-in";
-                optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-regular fa-circle text-slate-300"></i>`;
-                
-                optBtn.onclick = () => {
-                    if(activeExAnsweredState) return;
-                    activeExAnsweredState = true;
-
-                    const activeOptionElements = box.getElementsByTagName('button');
-                    for(let b of activeOptionElements) b.disabled = true;
-
-                    if(optionIndex === data.correct) {
-                        optBtn.className = "w-full text-left p-3.5 rounded-xl border border-purple-500 bg-purple-50 text-purple-900 font-bold text-sm flex justify-between items-center shadow-inner";
-                        optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-solid fa-circle-check text-purple-600"></i>`;
-                        document.getElementById('ex-correct-feedback-str').innerHTML = `${data.note}`;
-                        speakText("Awesome work!");
-                    } else {
-                        optBtn.className = "w-full text-left p-3.5 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 font-bold text-sm flex justify-between items-center shadow-inner";
-                        optBtn.innerHTML = `<span>${alternativeText}</span><i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
-                        
-                        activeOptionElements[data.correct].className = "w-full text-left p-3.5 rounded-xl border border-purple-500 bg-purple-50 text-purple-900 font-bold text-sm flex justify-between items-center";
-                        activeOptionElements[data.correct].innerHTML = `<span>${data.options[data.correct]}</span><i class="fa-solid fa-circle-check text-purple-600"></i>`;
-                        document.getElementById('ex-correct-feedback-str').innerHTML = `${data.note}`;
-                    }
-                    document.getElementById('active-ex-actions-bar').classList.remove('hidden');
-                };
-                box.appendChild(optBtn);
-            });
-        }
-
-        function triggerExNextAutoSequence() {
-            const indexValue = (globalSelectedExIndex + 1) % exercisesDataset.length;
-            renderExerciseScreenIndexRecord(indexValue);
-            document.getElementById('active-ex-terminal-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // Initialize values on document page rendering
-        window.onload = () => {
-            switchTab('dashboard');
-            filterContent('beginner');
-            initializeQuizInterfaceModule();
-            initializeExercisesModule();
-        };
-    </script>
+    <!-- LINKING YOUR EXTERNAL OPERATIONAL SCRIPT FILE -->
+    <script src="app.js"></script>
 </body>
 </html>
